@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Мир Животных</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .menu button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #81c784;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .menu button:hover {
+      background-color: #66bb6a;
+    }
+
+    .animals {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .animal-card {
+      background-color: white;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .animal-card:hover {
+      transform: scale(1.05);
+    }
+
+    .animal-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .animal-card .info {
+      padding: 15px;
+    }
+
+    .animal-card h3 {
+      margin: 0 0 10px;
+    }
+
+    .animal-card p {
+      margin: 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Мир Животных</h1>
+
+  <div class="menu">
+    <button onclick="showCategory('mammals')">Млекопитающие</button>
+    <button onclick="showCategory('reptiles')">Рептилии</button>
+    <button onclick="showCategory('birds')">Птицы</button>
+  </div>
+
+  <div class="animals" id="animalContainer">
+    <!-- Карточки животных будут подставлены через JS -->
+  </div>
+
+  <script>
+    const animals = {
+      mammals: [
+        {
+          name: "Лев",
+          img: "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
+          desc: "Король животных, живёт в саваннах Африки."
+        },
+        {
+          name: "Медведь",
+          img: "без названия.jpg",
+          desc: "Крупный хищник, обитает в лесах и горах."
+        }
+      ],
+      reptiles: [
+        {
+          name: "Крокодил",
+          img: "без названия (1).jpg",
+          desc: "Мощный рептилия, живёт в реках и болотах."
+        },
+        {
+          name: "Ящерица",
+          img: "без названия (2).jpg",
+          desc: "Маленькая рептилия, быстро бегает и хорошо маскируется."
+        }
+      ],
+      birds: [
+        {
+          name: "Орёл",
+          img: "без названия (3).jpg",
+          desc: "Мощная хищная птица, символ силы."
+        },
+        {
+          name: "Попугай",
+          img: "без названия (4).jpg",
+          desc: "Яркая птица, умеет имитировать звуки и речь."
+        }
+      ]
+    };
+
+    function showCategory(category) {
+      const container = document.getElementById("animalContainer");
+      container.innerHTML = "";
+
+      animals[category].forEach(animal => {
+        const card = document.createElement("div");
+        card.className = "animal-card";
+        card.innerHTML = `
+          <img src="${animal.img}" alt="${animal.name}">
+          <div class="info">
+            <h3>${animal.name}</h3>
+            <p>${animal.desc}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Показываем млекопитающих по умолчанию
+    showCategory("mammals");
+  </script>
+</body>
+</html>
